@@ -1,13 +1,9 @@
 package com.endava.entity;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Objects;
-
 /**
  * Created by sbogdanschi on 27/03/2017.
  */
-public class Employee {
+ /* public class Employee {
     private LocalDateTime localDateTime;
     private Worker worker;
 
@@ -62,4 +58,5 @@ public class Employee {
         sb.append('}').append("\n");
         return sb.toString();
     }
-}
+
+} */

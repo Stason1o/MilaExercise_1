@@ -1,49 +1,50 @@
 package com.endava.entity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.Objects;
 
 /**
  * Created by sbogdanschi on 27/03/2017.
  */
 public class EmployeeList {
-    private List<Employee> employees;
+    private Map<LocalDateTime, Worker> workerMap;
+    //private List<Employee> employees;
 
     public EmployeeList() {
         //empty constructor
     }
 
-    public EmployeeList(List<Employee> employees) {
-        this.employees = new ArrayList<Employee>(employees);
+    public EmployeeList(Map<LocalDateTime, Worker> workerMap) {
+        this.workerMap = workerMap;
     }
 
-    public List<Employee> getEmployees() {
-        return employees;
+    public Map<LocalDateTime, Worker> getWorkerMap() {
+        return workerMap;
     }
 
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
+    public void setWorkerMap(Map<LocalDateTime, Worker> workerMap) {
+        this.workerMap = workerMap;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof EmployeeList)) return false;
         EmployeeList that = (EmployeeList) o;
-        return Objects.equals(employees, that.employees);
+        return Objects.equals(workerMap, that.workerMap);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(employees);
+        return Objects.hash(workerMap);
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("EmployeeList{");
-        sb.append("employees=").append(employees).append("\n");
-        sb.append('}');
+        sb.append("workerMap=").append(workerMap);
+        sb.append('}').append('\n');
         return sb.toString();
     }
 }

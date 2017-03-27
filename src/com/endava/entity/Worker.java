@@ -15,28 +15,18 @@ public class Worker {
     private byte age;
     Status readyForTrip;
 
-    private static List<String> allowedCountries;
-
-    static {
-        allowedCountries = new ArrayList<String>(){{
-            add("USA");
-            add("Moldova");
-            add("PAris");
-            add("Monaco");
-            add("Italy");
-            add("London");
-        }};
-    }
+    private List<String> allowedCountries;
 
     public Worker() {
         //empty constructor
     }
 
-    public Worker(String firstName, String lastName, byte age, Status status) {
+    public Worker(String firstName, String lastName, byte age, Status status, ArrayList<String> allowedCountries) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.readyForTrip = status;
+        this.allowedCountries = allowedCountries;
     }
 
     public String getFirstName() {
@@ -71,12 +61,12 @@ public class Worker {
         this.readyForTrip = readyForTrip;
     }
 
-    public static List<String> getAllowedCountries() {
+    public List<String> getAllowedCountries() {
         return allowedCountries;
     }
 
-    public static void setAllowedCountries(List<String> allowedCountries) {
-        Worker.allowedCountries = allowedCountries;
+    public void setAllowedCountries(List<String> allowedCountries) {
+        this.allowedCountries = allowedCountries;
     }
 
     @Override
@@ -102,7 +92,7 @@ public class Worker {
         sb.append(", lastName='").append(lastName).append('\'');
         sb.append(", age=").append(age);
         sb.append(", readyForTrip=").append(readyForTrip);
-        sb.append('}');
+        sb.append('}').append('\n');
         return sb.toString();
     }
 }
