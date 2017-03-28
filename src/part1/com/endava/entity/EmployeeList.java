@@ -1,4 +1,4 @@
-package com.endava.entity;
+package part1.com.endava.entity;
 
 import java.time.LocalDateTime;
 import java.util.Map;

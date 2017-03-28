@@ -1,6 +1,6 @@
-package com.endava.entity;
+package part1.com.endava.entity;
 
-import com.endava.entity.enums.Status;
+import part1.com.endava.entity.enums.Status;
 
 import java.util.ArrayList;
 import java.util.List;

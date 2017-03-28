@@ -1,9 +1,9 @@
-package com.endava.main;
+package part1.com.endava.main;
 
-import com.endava.entity.EmployeeList;
-import com.endava.entity.Worker;
-import com.endava.service.EmployeeService;
-import com.endava.util.EmployeeInit;
+import part1.com.endava.entity.EmployeeList;
+import part1.com.endava.entity.Worker;
+import part1.com.endava.service.EmployeeService;
+import part1.com.endava.util.EmployeeInit;
 
 import java.time.LocalDateTime;
 import java.util.*;

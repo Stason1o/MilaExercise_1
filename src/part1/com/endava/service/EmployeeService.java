@@ -1,8 +1,7 @@
-package com.endava.service;
+package part1.com.endava.service;
 
-import com.endava.entity.Worker;
-import com.endava.entity.enums.Capability;
-import com.endava.entity.enums.Status;
+import part1.com.endava.entity.Worker;
+import part1.com.endava.entity.enums.Capability;
 
 import java.time.LocalDateTime;
 import java.util.*;

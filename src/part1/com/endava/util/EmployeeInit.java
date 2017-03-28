@@ -1,7 +1,7 @@
-package com.endava.util;
+package part1.com.endava.util;
 
-import com.endava.entity.Worker;
-import com.endava.entity.enums.Status;
+import part1.com.endava.entity.Worker;
+import part1.com.endava.entity.enums.Status;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
