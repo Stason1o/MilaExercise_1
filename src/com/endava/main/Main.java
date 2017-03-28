@@ -17,13 +17,13 @@ public class Main {
 
         System.out.println(employeeMap);
 
-        List<Map.Entry<LocalDateTime, Worker>> list = new LinkedList<>(employeeMap.getWorkerMap().entrySet());
+        List<Map.Entry<LocalDateTime, Worker>> listOfEmployeeMap = new LinkedList<>(employeeMap.getWorkerMap().entrySet());
 
         System.out.println("------------------------------------");
 
-        employeeService.sortList(list);
+        employeeService.sortList(listOfEmployeeMap);
 
-        System.out.println(list);
+        System.out.println(listOfEmployeeMap);
 
         Set<Worker> emplSet;
 
@@ -42,29 +42,26 @@ public class Main {
         }};
 
         List<Worker> workersToVisitSpecificCountry = new ArrayList<Worker>() {{
-            add(list.get(0).getValue());
-            add(list.get(10).getValue());
-            add(list.get(5).getValue());
-            add(list.get(15).getValue());
+            add(listOfEmployeeMap.get(0).getValue());
+            add(listOfEmployeeMap.get(10).getValue());
+            add(listOfEmployeeMap.get(5).getValue());
+            add(listOfEmployeeMap.get(15).getValue());
         }};
 
         List<Worker> workersToVisit = new ArrayList<Worker>() {{
-            add(list.get(1).getValue());
-            add(list.get(11).getValue());
-            add(list.get(6).getValue());
-            add(list.get(17).getValue());
+            add(listOfEmployeeMap.get(1).getValue());
+            add(listOfEmployeeMap.get(11).getValue());
+            add(listOfEmployeeMap.get(6).getValue());
+            add(listOfEmployeeMap.get(17).getValue());
         }};
 
-        System.out.println(employeeService.possibilityToVisitCountry(list.get(1).getValue(), allowedCountries));
+        System.out.println(employeeService.possibilityToVisitCountry(listOfEmployeeMap.get(1).getValue(), allowedCountries));
 
-        Map<String, List<Worker>> finalMap =
-                employeeService.createFinalCollectionToStoreCountryAndWorkers("Usa", workersToVisitSpecificCountry);
+        Map<String, List<Worker>> unmodifiableMap =
+                employeeService.createFinalCollectionToStoreCountryAndWorkers("Usa", listOfEmployeeMap);
 
         System.out.println("-----------------------------------------------------");
-        System.out.println(finalMap);
+        System.out.println(unmodifiableMap);
 
-        finalMap.put("qwerty", workersToVisit);
-        System.out.println("--------------------------------------------------------");
-        System.out.println(finalMap);
     }
 }
