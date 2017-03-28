@@ -3,6 +3,7 @@ package com.endava.main;
 import com.endava.entity.EmployeeList;
 import com.endava.entity.Worker;
 import com.endava.service.EmployeeService;
+import com.endava.util.EmployeeInit;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -13,7 +14,8 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         EmployeeService employeeService = new EmployeeService();
-        EmployeeList employeeMap = new EmployeeList(employeeService.createEmployees());
+        EmployeeInit employeeInit = new EmployeeInit();
+        EmployeeList employeeMap = new EmployeeList(employeeInit.createEmployees());
 
         System.out.println(employeeMap);
 
