@@ -13,11 +13,7 @@ import java.util.Map;
  */
 public class EmployeeInit {
 
-    public EmployeeInit() {
-        //empty constructor
-    }
-
-    public Map<LocalDateTime, Worker> createEmployees() {
+    public static Map<LocalDateTime, Worker> createEmployees() {
         return new LinkedHashMap<LocalDateTime, Worker>() {{
             put(LocalDateTime.of(1960, 3, 13, 11, 5),
                     new Worker("Valera", "Valerovici", (byte) 57, Status.READY, new ArrayList<String>() {{

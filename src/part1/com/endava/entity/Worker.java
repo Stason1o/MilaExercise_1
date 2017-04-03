@@ -13,7 +13,7 @@ public class Worker {
     private String firstName;
     private String lastName;
     private byte age;
-    Status readyForTrip;
+    Status readyForTrip;    //TODO access modifier/ boolean
 
     private List<String> allowedCountries;
 

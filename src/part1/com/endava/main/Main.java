@@ -14,15 +14,13 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         EmployeeService employeeService = new EmployeeService();
-        EmployeeInit employeeInit = new EmployeeInit();
-        EmployeeList employeeMap = new EmployeeList(employeeInit.createEmployees());
+        EmployeeList employeeMap = new EmployeeList(EmployeeInit.createEmployees());
 
         System.out.println(employeeMap);
 
         List<Map.Entry<LocalDateTime, Worker>> listOfEmployeeMap = new LinkedList<>(employeeMap.getWorkerMap().entrySet());
 
         System.out.println("------------------------------------");
-
         employeeService.sortList(listOfEmployeeMap);
 
         System.out.println(listOfEmployeeMap);
@@ -43,19 +41,6 @@ public class Main {
             add("Canada");
         }};
 
-        List<Worker> workersToVisitSpecificCountry = new ArrayList<Worker>() {{
-            add(listOfEmployeeMap.get(0).getValue());
-            add(listOfEmployeeMap.get(10).getValue());
-            add(listOfEmployeeMap.get(5).getValue());
-            add(listOfEmployeeMap.get(15).getValue());
-        }};
-
-        List<Worker> workersToVisit = new ArrayList<Worker>() {{
-            add(listOfEmployeeMap.get(1).getValue());
-            add(listOfEmployeeMap.get(11).getValue());
-            add(listOfEmployeeMap.get(6).getValue());
-            add(listOfEmployeeMap.get(17).getValue());
-        }};
 
         System.out.println(employeeService.possibilityToVisitCountry(listOfEmployeeMap.get(1).getValue(), allowedCountries));
 

@@ -47,14 +47,14 @@ public class EmployeeService {
         return Capability.NO;
     }
 
-    private static boolean workerCanVisitCountry(String country, List<String> allowedCountries){
-        for (String iterator: allowedCountries)
-            if(iterator.equalsIgnoreCase(country))
+    private static boolean workerCanVisitCountry(String givenCountry, List<String> allowedCountries){
+        for (String country: allowedCountries) {
+            if (country.equalsIgnoreCase(givenCountry))
                 return true;
-            else return false;
+        }
         return false;
     }
-
+    //TODO list -> Map
     public Map<String, List<Worker>> createFinalCollectionToStoreCountryAndWorkers(String country, List<Map.Entry<LocalDateTime, Worker>> workers) {
         Map<String, List<Worker>> modifiableMap = new TreeMap<>(Collections.reverseOrder());
         List<Worker> allowedWorkers = new ArrayList<>();
