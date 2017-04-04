@@ -2,11 +2,14 @@ package part1.com.endava.main;
 
 import part1.com.endava.entity.EmployeeList;
 import part1.com.endava.entity.Worker;
+import part1.com.endava.entity.enums.Country;
 import part1.com.endava.service.EmployeeService;
-import part1.com.endava.util.EmployeeInit;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by sbogdanschi on 27/03/2017.
@@ -14,16 +17,13 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         EmployeeService employeeService = new EmployeeService();
-        EmployeeList employeeMap = new EmployeeList(EmployeeInit.createEmployees());
+        EmployeeList employeeMap = new EmployeeList();
 
-        System.out.println(employeeMap);
-
-        List<Map.Entry<LocalDateTime, Worker>> listOfEmployeeMap = new LinkedList<>(employeeMap.getWorkerMap().entrySet());
+        employeeMap.getWorkerMap().entrySet().forEach(System.out::println);
 
         System.out.println("------------------------------------");
-        employeeService.sortList(listOfEmployeeMap);
+        employeeService.sortList(employeeMap.getWorkerMap()).entrySet().forEach(System.out::println);
 
-        System.out.println(listOfEmployeeMap);
 
         Set<Worker> emplSet;
 
@@ -34,18 +34,18 @@ public class Main {
         );
         System.out.println(emplSet);
 
-        List<String> allowedCountries = new ArrayList<String>() {{
-            add("France");
-            add("Usa");
-            add("Italy");
-            add("Canada");
+        List<Country> allowedCountries = new ArrayList<Country>() {{
+            add(Country.FRANCE);
+            add(Country.USA);
+            add(Country.ALGIR);
+            add(Country.CANADA);
         }};
 
 
-        System.out.println(employeeService.possibilityToVisitCountry(listOfEmployeeMap.get(1).getValue(), allowedCountries));
+        System.out.println(employeeService.possibilityToVisitCountry(employeeMap.getWorkerMap().get(1), allowedCountries));
 
-        Map<String, List<Worker>> unmodifiableMap =
-                employeeService.createFinalCollectionToStoreCountryAndWorkers("Usa", listOfEmployeeMap);
+        Map<Country, List<Worker>> unmodifiableMap =
+                employeeService.createFinalCollectionToStoreCountryAndWorkers(Country.USA, employeeMap.getWorkerMap());
 
         System.out.println("-----------------------------------------------------");
         System.out.println(unmodifiableMap);
