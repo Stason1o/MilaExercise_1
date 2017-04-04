@@ -1,7 +1,7 @@
 package part1.com.endava.service;
 
 import part1.com.endava.entity.Worker;
-import part1.com.endava.entity.enums.Capability;
+import part1.com.endava.entity.enums.Country;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -13,14 +13,19 @@ import java.util.stream.Collectors;
 public class EmployeeService {
 
     private Set<Worker> employeeSet;
-    private static Comparator<Map.Entry<LocalDateTime, Worker>> comparator = Comparator.comparing(Map.Entry::getKey);
+    //private static Comparator<Map<LocalDateTime, Worker>> comparator = Comparator.comparing();
 
     public EmployeeService() {
         //empty constructor
     }
 
-    public void sortList(List<Map.Entry<LocalDateTime, Worker>> list) {
-        Collections.sort(list, comparator);
+    public Map<LocalDateTime, Worker> sortList(Map<LocalDateTime, Worker> workerMap) {
+        Map<LocalDateTime, Worker> result = new LinkedHashMap<>();
+        workerMap.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByKey())
+                .forEachOrdered(value -> result.put(value.getKey(), value.getValue()));
+        return result;
     }
 
     public Set<Worker> workersReadyForTrip(Map<LocalDateTime, Worker> workerMap, LocalDateTime startDate, LocalDateTime endDate) {
@@ -38,32 +43,31 @@ public class EmployeeService {
         return (hireDate.isBefore(endDate) && hireDate.isAfter(startDate));
     }
 
-    public Capability possibilityToVisitCountry(Worker worker, List<String> countries) {
-        for (String countryIterator : countries) {
+    public boolean possibilityToVisitCountry(Worker worker, List<Country> countries) {
+        for (Country countryIterator : countries) {
             if(workerCanVisitCountry(countryIterator, worker.getAllowedCountries()))
-                    return Capability.YES;
-            else return Capability.NO;
-        }
-        return Capability.NO;
-    }
-
-    private static boolean workerCanVisitCountry(String givenCountry, List<String> allowedCountries){
-        for (String country: allowedCountries) {
-            if (country.equalsIgnoreCase(givenCountry))
                 return true;
         }
         return false;
     }
-    //TODO list -> Map
-    public Map<String, List<Worker>> createFinalCollectionToStoreCountryAndWorkers(String country, List<Map.Entry<LocalDateTime, Worker>> workers) {
-        Map<String, List<Worker>> modifiableMap = new TreeMap<>(Collections.reverseOrder());
+
+    private static boolean workerCanVisitCountry(Country givenCountry, List<Country> allowedCountries){
+        for (Country country: allowedCountries) {
+            if (country == givenCountry)
+                return true;
+        }
+        return false;
+    }
+
+    public Map<Country, List<Worker>> createFinalCollectionToStoreCountryAndWorkers(Country country, Map<LocalDateTime, Worker> workers) {
+        Map<Country, List<Worker>> modifiableMap = new TreeMap<>(Collections.reverseOrder());
         List<Worker> allowedWorkers = new ArrayList<>();
-        for(Map.Entry<LocalDateTime, Worker> mapIterator: workers){
+        for(Map.Entry<LocalDateTime, Worker> mapIterator: workers.entrySet()){
             allowedWorkers.addAll(mapIterator
                     .getValue()
                     .getAllowedCountries()
                     .stream()
-                    .filter(countryIterator -> countryIterator.equalsIgnoreCase(country))
+                    .filter(countryIterator -> countryIterator == country)
                     .map(countryIterator -> mapIterator.getValue())
                     .collect(Collectors.toList()));
         }
