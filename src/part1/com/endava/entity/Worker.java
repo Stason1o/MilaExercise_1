@@ -1,6 +1,6 @@
 package part1.com.endava.entity;
 
-import part1.com.endava.entity.enums.Status;
+import part1.com.endava.entity.enums.Country;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,15 +13,15 @@ public class Worker {
     private String firstName;
     private String lastName;
     private byte age;
-    Status readyForTrip;    //TODO access modifier/ boolean
+    private boolean readyForTrip;
 
-    private List<String> allowedCountries;
+    private List<Country> allowedCountries;
 
     public Worker() {
         //empty constructor
     }
 
-    public Worker(String firstName, String lastName, byte age, Status status, ArrayList<String> allowedCountries) {
+    public Worker(String firstName, String lastName, byte age, boolean status, ArrayList<Country> allowedCountries) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -53,19 +53,19 @@ public class Worker {
         this.age = age;
     }
 
-    public Status getReadyForTrip() {
+    public boolean getReadyForTrip() {
         return readyForTrip;
     }
 
-    public void setReadyForTrip(Status readyForTrip) {
+    public void setReadyForTrip(boolean readyForTrip) {
         this.readyForTrip = readyForTrip;
     }
 
-    public List<String> getAllowedCountries() {
+    public List<Country> getAllowedCountries() {
         return allowedCountries;
     }
 
-    public void setAllowedCountries(List<String> allowedCountries) {
+    public void setAllowedCountries(List<Country> allowedCountries) {
         this.allowedCountries = allowedCountries;
     }
 
@@ -92,7 +92,8 @@ public class Worker {
         sb.append(", lastName='").append(lastName).append('\'');
         sb.append(", age=").append(age);
         sb.append(", readyForTrip=").append(readyForTrip);
-        sb.append('}').append('\n');
+        sb.append(", allowedCountries=").append(allowedCountries);
+        sb.append('}');
         return sb.toString();
     }
 }
